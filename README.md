@@ -1,2 +1,3 @@
-# version-control-presentation
-Presentation on version control and git
+# Version Control 
+
+A presentation on version control for the TSWG, [view here](https://rawgit.com)
