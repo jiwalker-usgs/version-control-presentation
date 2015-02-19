@@ -63,6 +63,9 @@
 					<p>I'm primarily a Git user</p>
 					<p>My views and opinions are my own, not to be confused with official policy</p>
 					<p>YMMV</p>
+					<aside class="notes">
+						<p>Mention SVN and CVS as other SCMs used</p>
+					</aside>
 				</section>
 				<section data-background="#006F41">
 					<section>
@@ -93,6 +96,7 @@
 						<img src="img/tag.jpg" />
 						<aside class="notes">
 							<p>tags mark a particular point in history</p>
+							<p>Source frozen in time -Ivan</p>
 							<p>these can be used as points to branch from</p>
 							<p>good idea to use version numbers (semantic versioning?)</p>
 							<p>Also known as baseline or labels</p>
@@ -104,6 +108,7 @@
 						<small>By Museo de Almeria (Own work) <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, <a href="http://commons.wikimedia.org/wiki/File%3AFlechadeSilex.jpg">via Wikimedia Commons</a></small>
 						<aside class="notes">
 							<p>This is where new commits are added/patched</p>
+							<p>Very latest version of code</p>
 							<p>Operations are available to change where HEAD is (different depending on system)</p>
 						</aside>
 					</section>
@@ -123,10 +128,11 @@
 						<p>SCM is another term for VCS, better at explaining the Source part</p>
 						<p>commit is a single unit (node) of history in the tree (atomic in most VCS)</p>
 						<p>diff is a line by line (file by file) comparison of two commits</p>
-						<p>merge is when two changes (such as two branches) are combined into a single commit</p>
+						<p>merge is when two changes (such as two branches) are combined into a single commit. Patching the diff of all commits on a branch to the target branch</p>
 						<p>conflict occurs when changes occur in close proximity and cannot be resolved automatically</p>
-						<p>revision is an id that is given to each commit (sequential or hashed)</p>
+						<p>revision is an id that is given to each commit (sequential or hashed). Always Unique.</p>
 						<p>repository is where all the files and history is preserved (centralized or distributed)</p>
+						<p>--Pause for Questions--</p>
 					</aside>
 				</section>
 				<section data-background="#006F41">
@@ -137,6 +143,7 @@
 							<p>The main focus is source code, other things fill up the repository</p>
 							<p>Not a place to put a bunch of binary files, they don't version well</p>
 							<p>Best not to put project dependencies in source control, use dependency management for that</p>
+							<p>Don't put passwords or sensitive information into source</p>
 							<p>Don't put results of a build process into source, that's what the build is for</p>
 							<p>Scripting languages without a "build" may want to separate source code from releasable</p>
 						</aside>
@@ -153,6 +160,7 @@
 						<aside class="notes">
 							<p>Source code is anything touch directly by build or included in final output</p>
 							<p>Solutions for dealing with large files/binaries are out there, separate</p>
+							<p>Other resources may include SCM metadata such as .gitignore</p>
 						</aside>
 					</section>
 				</section>
@@ -177,6 +185,9 @@
 							<li class="fragment roll-in">Organization structure determines importance of specific repositories</li>
 							<li class="fragment roll-in">Commits can be made remotely and reviewed to add to canonical repo</li>
 						</ul>
+						<aside class="notes">
+							<p>Local repository is on the harddrive of development computer, may also have one owned by you on a server in the case of github</p>
+						</aside>
 					</section>
 					<section>
 						<h3>The story of Git</h3>
@@ -203,6 +214,7 @@
 					<aside class="notes">
 						<p>This section should be called best-practices, but I hate that term</p>
 						<p>Commits are the big draw for SCM, reverting and tracking is huge</p>
+						<p>There are some example/recommended workflows (gitflow, branching, etc.)
 						<p>In the words of Linus, a commit is a pointer to how things were, what changed and why</p>
 					</aside>
 				</section>
@@ -216,6 +228,11 @@
 							<li class="fragment roll-in"><a href="https://github.com/usgs">USGS GitHub</a></li>
 							<li class="fragment roll-in"><a href="http://usgs-r.github.io">USGS-R GitHub</a></li>
 						</ul>
+						<aside class="notes">
+							<p>Policy relates to FSPs and what/how we distribute code</p>
+							<p>Stash is made by Atlassian, makers of JIRA/Confluence</p>
+							<p>USGS Github is in the cloud, just an organization in the regular github, others are on USGS network</p>
+						</aside>
 					</section>
 					<section>
 						<h3>More Resources</h3>
@@ -227,7 +244,8 @@
 							<li class="fragment roll-in"><a href="http://semver.org/">Semantic Versioning</a></li>
 						</ul>
 						<aside class="notes">
-							Here are some resources for learning git/github and using it within the government sphere
+							<p>Here are some resources for learning git/github and using it within the government sphere</p>
+							<p>Semantic versioning is just trying to make versions mean something</p>
 						</aside>
 					</section>
 				</section>
