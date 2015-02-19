@@ -42,7 +42,6 @@
 			<div class="slides">
 				<section data-background="#006F41">
 					<h1>Version Control</h1>
-					<h3>Principles and Procedures</h3>
 					<p>
 						<small>Jordan Walker</small>
 					</p>
@@ -55,33 +54,48 @@
 					<ul>
 						<li>Anatomy of a VCS</li>
 						<li>General Concepts</li>
-						<li>Centralized vs. Decentralized</li>
-						<li>Github and policies</li>
+						<li>Centralized vs. Distributed</li>
+						<li>GitHub and policies</li>
 					</ul>
+				</section>
+				<section data-background="#006F41">
+					<h2>Disclaimer</h2>
+					<p>I'm primarily a Git user</p>
+					<p>My views and opinions are my own, not to be confused with official policy</p>
+					<p>YMMV</p>
 				</section>
 				<section data-background="#006F41">
 					<section>
 						<h2>Anatomy of a Version Control System</h2>
 						<aside class="notes">
-							Applies to the general structure and how source is generally structured
+							<p>Applies to the general structure and how source is generally structured</p>
+							<p>Also mention Source control management/source code management/software configuration management</p>
 						</aside>
 					</section>
 					<section>
 						<h3>Trunk</h3>
 						<img src="img/tree-trunk.jpg" />
 						<aside class="notes">
-							Note that git treats all branches as equal, master is the default trunk
+							<p>Trunk is the main line of development, code is added to trunk</p>
+							<p>Note that git (others?) treat all branches as equal, master is the default trunk</p>
 						</aside>
 					</section>
 					<section>
 						<h3>Branches</h3>
 						<img src="img/tree-branches.jpg" />
+						<aside class="notes">
+							<p>powerful feature of SCM, allows for work to continue in parallel</p>
+							<p>Also can be dangerous</p>
+						</aside>
 					</section>
 					<section>
 						<h3>Tags</h3>
 						<img src="img/tag.jpg" />
 						<aside class="notes">
-							Also known as baseline or labels
+							<p>tags mark a particular point in history</p>
+							<p>these can be used as points to branch from</p>
+							<p>good idea to use version numbers (semantic versioning?)</p>
+							<p>Also known as baseline or labels</p>
 						</aside>
 					</section>
 					<section>
@@ -89,13 +103,15 @@
 						<img src="img/head.jpg" height="500px"/>
 						<small>By Museo de Almeria (Own work) <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>, <a href="http://commons.wikimedia.org/wiki/File%3AFlechadeSilex.jpg">via Wikimedia Commons</a></small>
 						<aside class="notes">
-							This is where new commits are added/patched
+							<p>This is where new commits are added/patched</p>
+							<p>Operations are available to change where HEAD is (different depending on system)</p>
 						</aside>
 					</section>
 				</section>
 				<section data-background="#006F41">
 					<h2>Terms/Jargon</h2>
 					<ul>
+						<li class="fragment roll-in">SCM</li>
 						<li class="fragment roll-in">commit</li>
 						<li class="fragment roll-in">diff</li>
 						<li class="fragment roll-in">merge</li>
@@ -103,12 +119,91 @@
 						<li class="fragment roll-in">revision</li>
 						<li class="fragment roll-in">repository</li>
 					<ul>
+					<aside class="notes">
+						<p>SCM is another term for VCS, better at explaining the Source part</p>
+						<p>commit is a single unit (node) of history in the tree (atomic in most VCS)</p>
+						<p>diff is a line by line (file by file) comparison of two commits</p>
+						<p>merge is when two changes (such as two branches) are combined into a single commit</p>
+						<p>conflict occurs when changes occur in close proximity and cannot be resolved automatically</p>
+						<p>revision is an id that is given to each commit (sequential or hashed)</p>
+						<p>repository is where all the files and history is preserved (centralized or distributed)</p>
+					</aside>
 				</section>
 				<section data-background="#006F41">
-					<h2>What version control isn't</h2>
-
+					<section>
+						<h3>What version control isn't</h3>
+						<img src="img/scrapyard.jpg" />
+						<aside class="notes">
+							<p>The main focus is source code, other things fill up the repository</p>
+							<p>Not a place to put a bunch of binary files, they don't version well</p>
+							<p>Best not to put project dependencies in source control, use dependency management for that</p>
+							<p>Don't put results of a build process into source, that's what the build is for</p>
+							<p>Scripting languages without a "build" may want to separate source code from releasable</p>
+						</aside>
+					</section>
+					<section>
+						<h3>Then what is it for?</h3>
+						<ul>
+							<li class="fragment roll-in">Source</li>
+							<li class="fragment roll-in">Tests</li>
+							<li class="fragment roll-in">Documentation</li>
+							<li class="fragment roll-in">Build Materials</li>
+							<li class="fragment roll-in">Other Resources</li>
+						</ul>
+						<aside class="notes">
+							<p>Source code is anything touch directly by build or included in final output</p>
+							<p>Solutions for dealing with large files/binaries are out there, separate</p>
+						</aside>
+					</section>
+				</section>
+				<section data-background="#006F41">
+					<section>
+						<h3>Centralized vs. Distributed Version Control</h3>	
+					</section>
+					<section>
+						<h3>Centralized</h3>
+						<ul>
+							<li class="fragment roll-in">Traditional version control systems (CVS, Subversion, etc.)</li>
+							<li class="fragment roll-in">Repository is on server, clients perform commands (commit, checkout, update) directly against server</li>
+							<li class="fragment roll-in">Only trusted people may commit, on one authoritative source tree</li>
+							<li class="fragment roll-in">Locks are available to ensure that only one user is working on a file at a time</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Distributed</h3>
+						<ul>
+							<li class="fragment roll-in">Newer model of version control systems (Git, Mercurial, etc.)</li>
+							<li class="fragment roll-in">Repositories are "cloned" and commits are exchanged between repos</li>
+							<li class="fragment roll-in">Organization structure determines importance of specific repositories</li>
+							<li class="fragment roll-in">Commits can be made remotely and reviewed to add to canonical repo</li>
+						</ul>
+					</section>
+					<section>
+						<h3>The story of Git</h3>
+						<img src="img/linus.jpg" height="600px"/>
+						<aside class="notes">
+							<p>Linus Torvalds, sick of dealing with maintaining the giant project that is the Linux kernel with patches sent to him and applied manually, looked to BitKeeper for the first SCM for the kernel.  After a fallout with BitKeeper he needed a SCM that worked similar to it.  He wrote a passable version of one in several days and git was born.  He credits CVS with some inspiration, because anytime he didn't know the right way to go, he would do the opposite of CVS.</p>
+						</aside>
+					</section>
+				</section>
+				<section data-background="#006F41">
+					<h2>GitHub</h2>
+					<img src="img/foundingfather_v2.png" width="250px" />
+					<p>GitHub brought a social element to SCM.  This brought about the popularity of Git.</p>
+				</section>
+				<section data-background="#006F41">
+					<h2>Tips and tricks</h2>
+					<ul>
+						<li class="fragment roll-in">Commit early and often</li>
+						<li class="fragment roll-in">Avoid long running branches/merge often</li>
+						<li class="fragment roll-in">Establish common workflows</li>
+						<li class="fragment roll-in">Tag anything that resembles a release</li>
+						<li class="fragment roll-in">Don't commit anything you'd want back</li>
+					</ul>
 					<aside class="notes">
-						Talk about not using VCS for storing dependencies, also not good to put built artifacts here.  Emphasis on "SOURCE"
+						<p>This section should be called best-practices, but I hate that term</p>
+						<p>Commits are the big draw for SCM, reverting and tracking is huge</p>
+						<p>In the words of Linus, a commit is a pointer to how things were, what changed and why</p>
 					</aside>
 				</section>
 				<section data-background="#006F41">
@@ -118,15 +213,18 @@
 							<li class="fragment roll-in"><a href="http://butst.usgs.gov/open-source/">Open Source Policy</a></li>
 							<li class="fragment roll-in"><a href="https://gitlab.cr.usgs.gov/">USGS GitLab</a></li>
 							<li class="fragment roll-in"><a href="https://my.usgs.gov/stash/projects">USGS Stash</a></li>
-							<li class="fragment roll-in"><a href="https://github.com/usgs">USGS Github</a></li>
-							<li class="fragment roll-in"><a href="https://github.com/usgs">USGS-R Github</a></li>
+							<li class="fragment roll-in"><a href="https://github.com/usgs">USGS GitHub</a></li>
+							<li class="fragment roll-in"><a href="http://usgs-r.github.io">USGS-R GitHub</a></li>
 						</ul>
 					</section>
 					<section>
 						<h3>More Resources</h3>
 						<ul>
-							<li class="fragment roll-in"><a href="https://github.com/government">Github for Government</a></li>
-							
+							<li class="fragment roll-in"><a href="https://github.com/government">GitHub for Government</a></li>
+							<li class="fragment roll-in"><a href="https://help.github.com/articles/good-resources-for-learning-git-and-github/">GitHub recommended resources</a</li>
+							<li class="fragment roll-in"><a href="http://git-scm.com/book/en/v2">Pro Git</a></li>
+							<li class="fragment roll-in"><a href="http://www.usgs.gov/socialmedia/">USGS Social Media</a></li>
+							<li class="fragment roll-in"><a href="http://semver.org/">Semantic Versioning</a></li>
 						</ul>
 						<aside class="notes">
 							Here are some resources for learning git/github and using it within the government sphere
